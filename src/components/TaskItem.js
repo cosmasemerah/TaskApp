@@ -65,7 +65,7 @@ const TaskItem = ({
       ? "accent-red-500/25"
       : "";
 
-  const isCompleted = completed && showCompleted ? "hidden" : "flex";
+  const isCompleted = completed && !showCompleted ? "hidden" : "flex";
 
   return (
     <li
@@ -84,6 +84,7 @@ const TaskItem = ({
           className="h-full w-full resize-none bg-transparent text-lg"
           name="title"
           placeholder="Title..."
+          showCompleted={showCompleted}
           value={title}
           rows="1"
           onChange={handleChange}
@@ -148,8 +149,6 @@ const TaskItem = ({
         hideDescription={hideDescription}
         hideLink={hideLink}
         onDuplicateTask={onDuplicateTask}
-        isFirstTask
-        isLastTask
       />
     </li>
   );

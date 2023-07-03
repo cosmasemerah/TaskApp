@@ -5,15 +5,17 @@ const ResizableTextarea = ({
   onChange,
   hideLink,
   hideDescription,
+  showCompleted,
   ...rest
 }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
     const textarea = textareaRef.current;
+    console.log(textareaRef.current);
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
-  }, [value, hideLink, hideDescription]);
+  }, [value, hideLink, hideDescription, showCompleted]);
 
   const handleChange = (e) => {
     onChange(e);

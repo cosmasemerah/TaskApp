@@ -18,7 +18,7 @@ function App() {
     return JSON.parse(localValue);
   });
 
-  const [showCompleted, setShowCompleted] = useState(true);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   useEffect(() => {
     //Store taskHeader to localStorage
