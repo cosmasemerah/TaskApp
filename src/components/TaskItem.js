@@ -1,13 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TaskMenu from "./TaskMenu";
+import ResizableTextarea from "./ResizableTextarea";
 
-const Task = ({
-  title,
-  description,
-  link,
+const TaskItem = ({
+  task,
   onUpdateTask,
-  completed,
-  priority,
   onMoveUp,
   onMoveDown,
   isOpen,
@@ -19,6 +16,16 @@ const Task = ({
 }) => {
   const [hideDescription, setHideDescription] = useState(true);
   const [hideLink, setHideLink] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const { title, description, link, completed, priority } = task;
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
 
   const handleHideDescription = () => {
     setHideDescription((prevHideDescription) => !prevHideDescription);
@@ -27,11 +34,14 @@ const Task = ({
     setHideLink((prevHideLink) => !prevHideLink);
   };
 
-  const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    const updatedValue = name === "completed" ? checked : value;
-    onUpdateTask({ [name]: updatedValue });
-  };
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value, checked } = e.target;
+      const updatedValue = name === "completed" ? checked : value;
+      onUpdateTask({ [name]: updatedValue });
+    },
+    [onUpdateTask]
+  );
 
   const priorityStyle =
     priority === "low"
@@ -42,6 +52,17 @@ const Task = ({
       ? "border-yellow-500"
       : priority === "urgent"
       ? "border-red-500"
+      : "";
+
+  const priorityAccent =
+    priority === "low"
+      ? "accent-gray-200/25"
+      : priority === "medium"
+      ? "accent-blue-500/25"
+      : priority === "high"
+      ? "accent-yellow-500/25"
+      : priority === "urgent"
+      ? "accent-red-500/25"
       : "";
 
   const isCompleted = completed && showCompleted ? "hidden" : "flex";
@@ -55,19 +76,19 @@ const Task = ({
         type="checkbox"
         checked={completed}
         onChange={handleChange}
-        className="ml-2 h-6 w-6 cursor-pointer rounded"
+        className={`ml-2 h-6 w-6 cursor-pointer rounded ${priorityAccent}`}
       />
 
       <div className="w-full">
-        <textarea
+        <ResizableTextarea
           className="h-full w-full resize-none bg-transparent text-lg"
           name="title"
           placeholder="Title..."
           value={title}
           rows="1"
           onChange={handleChange}
-        ></textarea>
-        <textarea
+        ></ResizableTextarea>
+        <ResizableTextarea
           className={`${
             hideDescription ? "hidden" : ""
           } h-full w-full  resize-none bg-transparent placeholder:italic`}
@@ -75,9 +96,14 @@ const Task = ({
           value={description}
           placeholder="Description..."
           rows="1"
+          hideDescription={hideDescription}
           onChange={handleChange}
-        ></textarea>
-        <div className={`${hideLink ? "hidden" : "flex"} items-center gap-1`}>
+        ></ResizableTextarea>
+        <div
+          className={`${hideLink ? "hidden" : "flex"} items-center gap-1 ${
+            isFocused ? "" : "text-blue-600"
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -93,19 +119,23 @@ const Task = ({
             />
           </svg>
 
-          <textarea
-            className={` h-full w-full  resize-none bg-transparent placeholder:italic`}
+          <ResizableTextarea
+            className="h-full w-full  resize-none bg-transparent placeholder:italic"
             name="link"
             value={link}
             rows="1"
             placeholder="Paste any link..."
             type="url"
+            hideLink={hideLink}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             onChange={handleChange}
           />
         </div>
       </div>
 
       <TaskMenu
+        title={title}
         isOpen={isOpen}
         onOpen={onOpenMenu}
         onClose={onCloseMenu}
@@ -118,9 +148,11 @@ const Task = ({
         hideDescription={hideDescription}
         hideLink={hideLink}
         onDuplicateTask={onDuplicateTask}
+        isFirstTask
+        isLastTask
       />
     </li>
   );
 };
 
-export default Task;
+export default TaskItem;

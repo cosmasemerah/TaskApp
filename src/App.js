@@ -1,18 +1,33 @@
-import Tasks from "./components/Tasks";
+import TaskList from "./components/TaskList";
 import TaskHeader from "./components/Header";
 import TaskFooter from "./components/Footer";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [taskHeader, setTaskHeader] = useState(() => {
+    const header = localStorage.getItem("taskHeader");
+    if (header == null) return {};
+
+    return JSON.parse(header);
+  });
+
+  const [tasks, setTasks] = useState(() => {
+    const localValue = localStorage.getItem("tasks");
+    if (localValue == null) return [];
+    return JSON.parse(localValue);
+  });
+
   const [showCompleted, setShowCompleted] = useState(true);
 
   useEffect(() => {
-    const textareas = document.querySelectorAll("textarea");
-    textareas.forEach((textarea) => {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    });
+    //Store taskHeader to localStorage
+    localStorage.setItem("taskHeader", JSON.stringify(taskHeader));
+  }, [taskHeader]);
+
+  useEffect(() => {
+    //Store task to localStorage
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   const handleToggleCompleted = () => {
@@ -23,7 +38,7 @@ function App() {
     setTasks((prevTasks) => [
       ...prevTasks,
       {
-        id: crypto.randomUUID(),
+        id: uuidv4(),
         title: "",
         description: "",
         link: "",
@@ -38,16 +53,19 @@ function App() {
   };
 
   const handleDulicateTask = (taskId) => {
-    const taskToDuplicate = tasks.filter((task) => task.id === taskId);
+    const taskToDuplicate = tasks.find((task) => task.id === taskId);
     if (taskToDuplicate) {
-      const duplicateTask = { ...taskToDuplicate, id: crypto.randomUUID() };
-      setTasks((prevTask) => [...prevTask, duplicateTask]);
+      const duplicateTask = { ...taskToDuplicate, id: uuidv4() };
+      const taskIndex = tasks.findIndex((task) => task.id === taskId);
+      const updatedTasks = [...tasks];
+      updatedTasks.splice(taskIndex + 1, 0, duplicateTask);
+      setTasks(updatedTasks);
     }
   };
 
   const handleTaskChange = (taskId, updatedTask) => {
-    setTasks((prevTask) => {
-      return prevTask.map((task) => {
+    setTasks((prevTasks) => {
+      return prevTasks.map((task) => {
         if (task.id === taskId) {
           return { ...task, ...updatedTask };
         }
@@ -81,10 +99,19 @@ function App() {
     }
   };
 
+  function handleHeaderChange(e) {
+    const { name, value } = e.target;
+
+    setTaskHeader((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
   return (
     <div className="m-10 mx-auto w-3/4">
-      <TaskHeader />
-      <Tasks
+      <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
+      <TaskList
         tasks={tasks}
         onUpdateTask={handleTaskChange}
         onMoveUp={handleMoveUp}

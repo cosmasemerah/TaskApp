@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Task from "./Task";
+import TaskItem from "./TaskItem";
 
-const Tasks = ({
+const TaskList = ({
   tasks,
   onUpdateTask,
   onMoveUp,
@@ -17,7 +17,7 @@ const Tasks = ({
     setOpenMenuTaskId(taskId);
   };
 
-  const handleCloseMenu = (taskId) => {
+  const handleCloseMenu = () => {
     setOpenMenuTaskId(null);
   };
 
@@ -37,14 +37,10 @@ const Tasks = ({
 
       {tasks.length > 0 && (
         <ul className="flex flex-col gap-2 py-4">
-          {tasks.map((task, index) => (
-            <Task
+          {tasks.map((task, index) => [
+            <TaskItem
               key={task.id}
-              title={task.title}
-              description={task.description}
-              link={task.link}
-              completed={task.completed}
-              priority={task.priority}
+              task={task}
               onUpdateTask={(updatedTask) =>
                 handleTaskChange(task.id, updatedTask)
               }
@@ -56,12 +52,12 @@ const Tasks = ({
               showCompleted={showCompleted}
               onDeleteTask={() => onDeleteTask(task.id)}
               onDuplicateTask={() => onDuplicateTask(task.id)}
-            />
-          ))}
+            />,
+          ])}
         </ul>
       )}
     </>
   );
 };
 
-export default Tasks;
+export default TaskList;

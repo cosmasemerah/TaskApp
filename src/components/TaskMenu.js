@@ -1,4 +1,5 @@
 const TaskMenu = ({
+  title,
   onUpdateTask,
   onMoveUp,
   onMoveDown,
@@ -32,7 +33,7 @@ const TaskMenu = ({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-7 w-7 cursor-pointer rounded-md p-1 hover:bg-customGray/50"
+        className="h-7 w-7 cursor-pointer rounded-md stroke-cyan-500 p-1 hover:bg-customGray/50"
         onClick={onMoveUp}
       >
         <path
@@ -73,9 +74,9 @@ const TaskMenu = ({
       </svg>
 
       {isOpen && (
-        <div className="absolute right-full top-0 flex h-auto w-60 flex-col divide-y bg-customGray text-sm font-semibold text-white">
+        <div className="absolute right-full top-0 flex h-auto w-60 flex-col divide-y rounded-md bg-customGray text-sm font-semibold text-white drop-shadow-2xl">
           <div className="flex items-center justify-between p-2">
-            <p>Task: Go shopping</p>
+            <p>Task: {title}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -100,7 +101,7 @@ const TaskMenu = ({
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-7 w-7 rounded-md p-1 text-red-500 hover:bg-customBlack/50"
+                className="h-7 w-7 cursor-pointer rounded-md p-1 text-red-500 hover:bg-customBlack/50"
                 onClick={() => handleSetPriority("urgent")}
               >
                 <path
@@ -115,7 +116,7 @@ const TaskMenu = ({
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-7 w-7 rounded-md p-1 text-yellow-500 hover:bg-customBlack/50"
+                className="h-7 w-7 cursor-pointer rounded-md p-1 text-yellow-500 hover:bg-customBlack/50"
                 onClick={() => handleSetPriority("high")}
               >
                 <path
@@ -130,7 +131,7 @@ const TaskMenu = ({
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-7 w-7 rounded-md p-1 text-blue-500 hover:bg-customBlack/50"
+                className="h-7 w-7 cursor-pointer rounded-md p-1 text-blue-500 hover:bg-customBlack/50"
                 onClick={() => handleSetPriority("medium")}
               >
                 <path
@@ -145,7 +146,7 @@ const TaskMenu = ({
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-7 w-7 rounded-md p-1 text-gray-200 hover:bg-customBlack/50"
+                className="h-7 w-7 cursor-pointer rounded-md p-1 text-gray-200 hover:bg-customBlack/50"
                 onClick={() => handleSetPriority("low")}
               >
                 <path
@@ -157,32 +158,41 @@ const TaskMenu = ({
             </div>
           </div>
           <div className="py-2">
-            <p className="p-2 hover:bg-customBlack/50" onClick={onMoveUp}>
+            <p
+              className="cursor-pointer p-2 hover:bg-customBlack/50"
+              onClick={onMoveUp}
+            >
               Move up
             </p>
-            <p className="p-2 hover:bg-customBlack/50" onClick={onMoveDown}>
+            <p
+              className="cursor-pointer p-2 hover:bg-customBlack/50"
+              onClick={onMoveDown}
+            >
               Move down
             </p>
           </div>
           <div className="py-2">
             <p
-              className="p-2  hover:bg-customBlack/50"
+              className="cursor-pointer  p-2 hover:bg-customBlack/50"
               onClick={onHideDescription}
             >
               {hideDescription ? "Show description" : "Hide description"}
             </p>
-            <p className="p-2  hover:bg-customBlack/50" onClick={onHideLink}>
+            <p
+              className="cursor-pointer  p-2 hover:bg-customBlack/50"
+              onClick={onHideLink}
+            >
               {hideLink ? "Show link" : "Hide link"}
             </p>
             <p
-              className="p-2  hover:bg-customBlack/50"
+              className="cursor-pointer  p-2 hover:bg-customBlack/50"
               onClick={(taskId) => duplicateTask(taskId)}
             >
               Duplicate
             </p>
           </div>
           <p
-            className="p-2 text-red-200 hover:bg-customBlack/50"
+            className="cursor-pointer p-2 text-red-200 hover:bg-customBlack/50"
             onClick={deleteTask}
           >
             Delete task
