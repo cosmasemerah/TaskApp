@@ -14,7 +14,7 @@ const TaskFooter = ({ tasks, onAddTask, onToggleCompleted, showCompleted }) => {
         className="flex cursor-pointer items-center rounded-md p-2 hover:bg-customGray/50"
         onClick={toggleCompleted}
       >
-        {!showCompleted && (
+        {showCompleted && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -36,7 +36,7 @@ const TaskFooter = ({ tasks, onAddTask, onToggleCompleted, showCompleted }) => {
           </svg>
         )}
 
-        {showCompleted && (
+        {!showCompleted && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

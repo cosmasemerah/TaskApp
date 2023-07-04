@@ -26,6 +26,7 @@ const TaskList = ({
   };
 
   const allCompleted = tasks.every((task) => task.completed);
+
   return (
     <>
       {tasks.length === 0 ? (
@@ -38,7 +39,9 @@ const TaskList = ({
 
       {tasks.length > 0 && (
         <ul
-          className={`${allCompleted ? "hidden" : "flex flex-col"} gap-2 py-4`}
+          className={`${
+            allCompleted && !showCompleted ? "hidden" : "flex flex-col"
+          } gap-2 py-4`}
         >
           {tasks.map((task, index) => [
             <TaskItem
