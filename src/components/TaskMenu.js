@@ -33,7 +33,7 @@ const TaskMenu = ({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="h-7 w-7 cursor-pointer rounded-md stroke-cyan-500 p-1 hover:bg-customGray/50"
+        className="h-7 w-7 cursor-pointer rounded-md p-1 hover:bg-customGray/50"
         onClick={onMoveUp}
       >
         <path
@@ -109,6 +109,7 @@ const TaskMenu = ({
                   strokeLinejoin="round"
                   d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
                 />
+                <title>urgent</title>
               </svg>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +125,7 @@ const TaskMenu = ({
                   strokeLinejoin="round"
                   d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
                 />
+                <title>high</title>
               </svg>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,6 +141,7 @@ const TaskMenu = ({
                   strokeLinejoin="round"
                   d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
                 />
+                <title>medium</title>
               </svg>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -154,6 +157,7 @@ const TaskMenu = ({
                   strokeLinejoin="round"
                   d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
                 />
+                <title>low</title>
               </svg>
             </div>
           </div>

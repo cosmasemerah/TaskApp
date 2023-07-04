@@ -109,24 +109,54 @@ function App() {
   }
 
   return (
-    <div className="m-10 mx-auto w-3/4">
-      <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
-      <TaskList
-        tasks={tasks}
-        onUpdateTask={handleTaskChange}
-        onMoveUp={handleMoveUp}
-        onMoveDown={handleMoveDown}
-        showCompleted={showCompleted}
-        onDeleteTask={handleDeleteTask}
-        onDuplicateTask={handleDulicateTask}
-      />
-      <TaskFooter
-        onAddTask={handleAddTask}
-        tasks={tasks}
-        onToggleCompleted={handleToggleCompleted}
-        showCompleted={showCompleted}
-      />
+    <div className="mx-auto mb-0 flex min-h-screen w-3/4 flex-col">
+      <div className="m-10 flex-grow ">
+        <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
+        <TaskList
+          tasks={tasks}
+          onUpdateTask={handleTaskChange}
+          onMoveUp={handleMoveUp}
+          onMoveDown={handleMoveDown}
+          showCompleted={showCompleted}
+          onDeleteTask={handleDeleteTask}
+          onDuplicateTask={handleDulicateTask}
+        />
+        <TaskFooter
+          onAddTask={handleAddTask}
+          tasks={tasks}
+          onToggleCompleted={handleToggleCompleted}
+          showCompleted={showCompleted}
+        />
+      </div>
+
+      <div className="p-4 text-center text-sm text-gray-400">
+        &copy; 2023 Cosmas Emerah.
+      </div>
     </div>
+
+    // <div className="flex flex-col bg-customBlack text-customLight">
+    //   <div className="flex-grow">
+    //     <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
+    //     <TaskList
+    //       tasks={tasks}
+    //       onUpdateTask={handleTaskChange}
+    //       onMoveUp={handleMoveUp}
+    //       onMoveDown={handleMoveDown}
+    //       showCompleted={showCompleted}
+    //       onDeleteTask={handleDeleteTask}
+    //       onDuplicateTask={handleDulicateTask}
+    //     />
+    //     <TaskFooter
+    //       onAddTask={handleAddTask}
+    //       tasks={tasks}
+    //       onToggleCompleted={handleToggleCompleted}
+    //       showCompleted={showCompleted}
+    //     />
+    //   </div>
+    //   <div className="p-4 text-sm text-gray-400">
+    //     &copy; 2023 Cosmas Emerah.
+    //   </div>
+    // </div>
   );
 }
 

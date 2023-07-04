@@ -66,6 +66,7 @@ const TaskItem = ({
       : "";
 
   const isCompleted = completed && !showCompleted ? "hidden" : "flex";
+  const titleStyle = completed ? { textDecoration: "line-through" } : {};
 
   return (
     <li
@@ -82,6 +83,7 @@ const TaskItem = ({
       <div className="w-full">
         <ResizableTextarea
           className="h-full w-full resize-none bg-transparent text-lg"
+          style={titleStyle}
           name="title"
           placeholder="Title..."
           showCompleted={showCompleted}

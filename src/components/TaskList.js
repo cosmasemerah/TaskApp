@@ -25,18 +25,21 @@ const TaskList = ({
     onUpdateTask(taskId, updatedTask);
   };
 
+  const allCompleted = tasks.every((task) => task.completed);
   return (
     <>
       {tasks.length === 0 ? (
         <p className="p-10 text-center text-xl">ADD A NEW TASK</p>
       ) : (
-        tasks.every((task) => task.completed) && (
+        allCompleted && (
           <p className="p-10 text-center text-xl">All tasks are completed</p>
         )
       )}
 
       {tasks.length > 0 && (
-        <ul className="flex flex-col gap-2 py-4">
+        <ul
+          className={`${allCompleted ? "hidden" : "flex flex-col"} gap-2 py-4`}
+        >
           {tasks.map((task, index) => [
             <TaskItem
               key={task.id}
