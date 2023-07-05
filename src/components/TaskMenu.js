@@ -74,7 +74,7 @@ const TaskMenu = ({
       </svg>
 
       {isOpen && (
-        <div className="absolute right-full top-0 flex h-auto w-60 flex-col divide-y rounded-md bg-customGray text-sm font-semibold text-white drop-shadow-2xl">
+        <div className="absolute right-full top-0 flex h-auto w-52 flex-col divide-y rounded-md bg-customGray text-sm font-semibold text-white drop-shadow-2xl">
           <div className="flex items-center justify-between p-2">
             <p>Task: {title}</p>
             <svg

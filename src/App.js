@@ -109,8 +109,8 @@ function App() {
   }
 
   return (
-    <div className="container mx-auto mb-0 flex min-h-screen flex-col">
-      <div className="m-10 flex-grow ">
+    <div className="container mx-auto mb-0 flex min-h-screen max-w-5xl flex-col">
+      <div className="flex-grow p-10 ">
         <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
         <TaskList
           tasks={tasks}
