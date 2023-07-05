@@ -103,7 +103,6 @@ const TaskItem = ({
           onChange={handleChange}
         ></ResizableTextarea>
         <div
-          text-xs
           className={`${hideLink ? "hidden" : "flex"} items-center gap-1 ${
             isFocused ? "" : "text-blue-600"
           }`}
