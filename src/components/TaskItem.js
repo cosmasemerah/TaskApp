@@ -94,7 +94,7 @@ const TaskItem = ({
         <ResizableTextarea
           className={`${
             hideDescription ? "hidden" : ""
-          } h-full w-full  resize-none bg-transparent placeholder:italic`}
+          } h-full w-full  resize-none bg-transparent text-sm placeholder:italic`}
           name="description"
           value={description}
           placeholder="Description..."
@@ -103,6 +103,7 @@ const TaskItem = ({
           onChange={handleChange}
         ></ResizableTextarea>
         <div
+          text-xs
           className={`${hideLink ? "hidden" : "flex"} items-center gap-1 ${
             isFocused ? "" : "text-blue-600"
           }`}
@@ -123,7 +124,7 @@ const TaskItem = ({
           </svg>
 
           <ResizableTextarea
-            className="h-full w-full  resize-none bg-transparent placeholder:italic"
+            className="h-full w-full  resize-none bg-transparent text-sm placeholder:italic"
             name="link"
             value={link}
             rows="1"
