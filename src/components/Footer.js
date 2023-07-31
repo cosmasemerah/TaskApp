@@ -56,7 +56,7 @@ const TaskFooter = ({ tasks, onAddTask, onToggleCompleted, showCompleted }) => {
             </svg>
           )}
 
-          <p className="">
+          <p>
             Completed {completedTasks.length} of {totalTasks}
           </p>
         </div>
