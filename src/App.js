@@ -3,6 +3,7 @@ import TaskHeader from "./components/Header";
 import TaskFooter from "./components/Footer";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [taskHeader, setTaskHeader] = useState(() => {
@@ -110,6 +111,7 @@ function App() {
 
   return (
     <div className="container mx-auto mb-0 flex min-h-screen max-w-5xl flex-col">
+      <Navbar />
       <div className="flex-grow p-10 ">
         <TaskHeader taskHeader={taskHeader} onChange={handleHeaderChange} />
         <TaskList
