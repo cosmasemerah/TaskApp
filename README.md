@@ -13,6 +13,6 @@ TaskFlow is a task management application developed using React. It provides use
 
 ## Usage:
 
-1. Clone the repository: `git clone https://github.com/cosmasemerah/TaskApp.git`
+1. Clone the repository: `git clone https://github.com/cosmasemerah/TaskFlow.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
